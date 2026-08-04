@@ -44,7 +44,6 @@ export function checkout() {
   const lines = cart.value.flatMap(item => [
     `• ${item.name} × ${item.quantity}: ₦${(item.price * item.quantity).toLocaleString()}`,
     `  Product: ${window.location.origin}/products/${item.id}`,
-    `  Image: ${item.image_url}`,
   ])
   const message = [
     `Hello Oydam's 👋🏽 I would like to place an order:`, '', ...lines, '',
