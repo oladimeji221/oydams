@@ -5,6 +5,7 @@ import Home from './views/Home.vue'
 import Admin from './views/Admin.vue'
 import Auth from './views/Auth.vue'
 import ProductDetail from './views/ProductDetail.vue'
+import Treats from './views/Treats.vue'
 import { supabase } from './lib/supabase'
 import './style.css'
 
@@ -13,6 +14,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: Home },
     { path: '/products/:id', component: ProductDetail },
+    { path: '/treats', component: Treats },
     { path: '/login', component: Auth, props: { mode: 'login' } },
     { path: '/register', component: Auth, props: { mode: 'register' } },
     { path: '/admin', component: Admin, meta: { requiresAuth: true } },

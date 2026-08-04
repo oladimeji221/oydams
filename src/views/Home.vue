@@ -6,7 +6,7 @@ import { brandImages } from '../data/products'
 
 const activeCategory = ref('All')
 const categories = ['All', 'Cakes', 'Pastries', 'Parfaits', 'Yoghurt', 'Drinks']
-const filtered = () => activeCategory.value === 'All' ? products.value : products.value.filter(p => p.category === activeCategory.value)
+const filtered = () => (activeCategory.value === 'All' ? products.value : products.value.filter(p => p.category === activeCategory.value)).slice(0, 4)
 const whatsappUrl = `https://wa.me/${(import.meta.env.VITE_WHATSAPP_NUMBER || '2347067720332').replace(/\D/g, '')}`
 onMounted(loadProducts)
 </script>
@@ -41,6 +41,7 @@ onMounted(loadProducts)
       </div>
       <div v-if="loadingProducts" class="catalog-state"><span class="loader"></span><p>Preparing the collection…</p></div>
       <div v-else-if="productsError || !products.length" class="catalog-state"><h3>Fresh treats are being added</h3><p>{{ productsError || 'The online catalogue will be available shortly.' }}</p><a :href="whatsappUrl" target="_blank" class="button primary">Order directly on WhatsApp</a></div>
+      <div v-if="products.length" class="view-all-row"><router-link to="/treats" class="button primary">Explore all treats <ArrowRight :size="17"/></router-link><span>{{ products.length }} delicious options available</span></div>
     </section>
 
     <section id="about" class="about-section">
