@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="13" fill="#141411"/>
-  <path d="M15 27c2-10 10-16 17-16s15 6 17 16H15Z" fill="none" stroke="#d4a62e" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="32" cy="9" r="3" fill="#d4a62e"/>
-  <path d="M11 29h42" stroke="#d4a62e" stroke-width="3" stroke-linecap="round"/>
-  <text x="32" y="51" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#d4a62e">O</text>
-</svg>
