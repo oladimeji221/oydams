@@ -1,12 +1,32 @@
 <script setup>
 import { ShoppingBag, Menu, X, Instagram, Facebook, Music2, MapPin, Phone, Clock3, ArrowUpRight } from 'lucide-vue-next'
-import { ref } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
 import { cartCount, cartOpen, toast } from './stores/shop'
 import CartDrawer from './components/CartDrawer.vue'
 import { brandImages } from './data/products'
+import { products } from './stores/shop'
+import { updateSeo } from './lib/seo'
 
 const menuOpen = ref(false)
+const route = useRoute()
 const whatsappUrl = `https://wa.me/${(import.meta.env.VITE_WHATSAPP_NUMBER || '2347067720332').replace(/\D/g, '')}`
+
+watchEffect(() => {
+  if (route.name === 'product' || route.path.startsWith('/products/')) {
+    const product = products.value.find(item => String(item.id) === String(route.params.id))
+    if (product) updateSeo({ title: product.name, description: product.description, image: product.image_url, path: route.path })
+    return
+  }
+  const pages = {
+    '/': {},
+    '/treats': { title: 'All Treats', description: 'Browse celebration cakes, meat pies, parfaits, Greek yoghurt and refreshing drinks freshly made by Oydam’s in Lagos.' },
+    '/login': { title: 'Admin Sign In', description: 'Secure owner access for Oydam’s Confectionery.' },
+    '/register': { title: 'Owner Registration', description: 'Create the owner account for Oydam’s Confectionery.' },
+    '/admin': { title: 'Product Dashboard', description: 'Manage Oydam’s product catalogue.' },
+  }
+  updateSeo({ ...(pages[route.path] || {}), path: route.path })
+})
 </script>
 
 <template>

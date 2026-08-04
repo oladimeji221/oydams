@@ -41,7 +41,11 @@ export const customer = reactive({ name: '', phone: '', location: '', note: '' }
 
 export function checkout() {
   if (!customer.name || !customer.phone || !customer.location || !cart.value.length) return false
-  const lines = cart.value.map(item => `• ${item.name} × ${item.quantity}: ₦${(item.price * item.quantity).toLocaleString()}`)
+  const lines = cart.value.flatMap(item => [
+    `• ${item.name} × ${item.quantity}: ₦${(item.price * item.quantity).toLocaleString()}`,
+    `  Product: ${window.location.origin}/products/${item.id}`,
+    `  Image: ${item.image_url}`,
+  ])
   const message = [
     `Hello Oydam's 👋🏽 I would like to place an order:`, '', ...lines, '',
     `*Total: ₦${cartTotal.value.toLocaleString()}*`, '',
