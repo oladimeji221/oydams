@@ -14,7 +14,8 @@ function resetForm() { Object.assign(form, { name: '', category: 'Cakes', price:
 function edit(product) { editing.value = product.id; Object.assign(form, product); window.scrollTo({ top: 0, behavior: 'smooth' }) }
 async function upload(event) {
   const file = event.target.files[0]; if (!file) return
-  const cloud = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME, preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+  const cloud = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || 'dxvpoebb0'
+  const preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET || 'ml_default'
   if (!cloud || !preset) return message.value = 'Add your Cloudinary cloud name and unsigned upload preset to .env first.'
   busy.value = true; const body = new FormData(); body.append('file', file); body.append('upload_preset', preset)
   const result = await fetch(`https://api.cloudinary.com/v1_1/${cloud}/image/upload`, { method: 'POST', body }).then(r => r.json())
