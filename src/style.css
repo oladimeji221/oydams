@@ -4,7 +4,7 @@
 
 .cta-section{background:radial-gradient(circle at 20% 20%,#c36b7c 0,transparent 25%),radial-gradient(circle at 80% 80%,#a54860 0,transparent 28%),linear-gradient(135deg,#671d32,#8d344d)}
 
-/* Oydam's signature gold logo treatment */
+/* Oydams signature gold logo treatment */
 .brand-mark,.brand strong{color:#b8860b}
 .brand-mark{border-color:#b8860b;background:linear-gradient(145deg,#fff9dd,#f5e4a7);box-shadow:0 3px 12px #b8860b22}
 footer .brand strong,footer .brand-mark{color:#e7c45a;border-color:#d5aa2e}
@@ -36,3 +36,38 @@ footer .brand-mark{background:#3b2718}
 .expanded-gallery{grid-template-columns:repeat(4,1fr);grid-template-rows:330px 330px;gap:14px}.gallery-item{position:relative;border:0;padding:0;margin:0;overflow:hidden;background:#292822;text-align:left}.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .4s}.gallery-item:after{content:'';position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#111c);pointer-events:none}.gallery-item:hover img{transform:scale(1.035);filter:brightness(.8)}.gallery-caption{position:absolute;left:18px;right:60px;bottom:17px;z-index:2;color:#fff;font:600 17px 'Playfair Display'}.gallery-expand{position:absolute;right:14px;top:14px;z-index:2;background:#171713d9;color:#e4bc57;border:1px solid #9e7a27;padding:7px 9px;text-transform:uppercase;font-size:8px;letter-spacing:1.3px}.expanded-gallery .gallery-item:nth-child(1),.expanded-gallery .gallery-item:nth-child(5){grid-row:span 1}.lightbox{position:fixed;inset:0;z-index:200;background:#090908f7;display:grid;grid-template-columns:80px minmax(0,1fr) 80px;align-items:center;padding:30px;color:#fff}.lightbox figure{height:calc(100vh - 60px);margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.lightbox figure img{width:auto;height:auto;max-width:100%;max-height:calc(100vh - 125px);object-fit:contain;box-shadow:0 25px 80px #0008}.lightbox figcaption{width:min(900px,100%);padding-top:15px;font:600 18px 'Playfair Display';display:flex;gap:18px;align-items:center}.lightbox figcaption span{font:600 10px 'DM Sans';letter-spacing:1.5px;color:#d8af4b}.lightbox-close,.lightbox-nav{border:1px solid #4c483d;background:#171713;color:#fff;width:48px;height:48px;display:grid;place-items:center;transition:.2s}.lightbox-close:hover,.lightbox-nav:hover{background:#c6962c;color:#171713;border-color:#c6962c}.lightbox-close{position:absolute;right:28px;top:25px}.lightbox-nav{justify-self:center}.lightbox-nav svg{width:25px}.lightbox-close svg{width:22px}
 @media(max-width:950px){.expanded-gallery{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,330px)}}
 @media(max-width:600px){.expanded-gallery{grid-template-columns:1fr;grid-template-rows:repeat(8,330px)}.lightbox{grid-template-columns:52px minmax(0,1fr) 52px;padding:15px 4px}.lightbox figure{height:calc(100vh - 30px)}.lightbox figure img{max-height:calc(100vh - 125px)}.lightbox-nav{width:40px;height:44px}.lightbox-close{right:14px;top:14px;z-index:3}.lightbox figcaption{font-size:15px;padding-inline:8px}}
+
+/* Mobile visibility and flow safeguards */
+html,body,#app{width:100%;max-width:100%;overflow-x:hidden}main,main>section,footer,.footer-main{min-width:0;max-width:100%}
+@media(max-width:600px){
+  main>section{display:block;width:100%;visibility:visible;opacity:1}
+  .hero{display:flex;flex-direction:column;min-height:auto;padding:56px 20px 45px;overflow:visible}
+  .hero:before{background:linear-gradient(#171713e8,#171713d9)}
+  .hero-copy{width:100%;max-width:100%;text-align:left}
+  .hero-copy .eyebrow,.hero-buttons,.social-proof{justify-content:flex-start}
+  .hero-copy>p{font-size:15px;line-height:1.7}
+  .hero-buttons{align-items:stretch}.hero-buttons .button{width:100%}
+  .social-proof{margin-top:34px}
+  .hero-visual{display:block;width:100%;height:390px;margin-top:45px}
+  .arch-image{width:100%;height:100%;max-width:none}.arch-image:after{display:none}
+  .floating-note{bottom:14px;left:10px}.doodle{right:8px;top:4%}
+  .promise-strip{display:flex;min-height:auto;padding:18px 20px;justify-content:flex-start;gap:8px}
+  .shop-section,.gallery-section,.how-section{display:block;padding:72px 18px}
+  .section-heading{display:block}.section-heading p{width:100%;max-width:none}
+  .category-tabs{display:flex;width:100%;max-width:100%;overflow-x:auto;white-space:nowrap;padding-bottom:7px}
+  .product-grid{display:grid;width:100%;grid-template-columns:1fr}
+  .product-card{display:block;width:100%}.product-image{display:block;width:100%;height:360px}
+  .view-all-row{display:flex;width:100%}
+  .about-section{display:flex;flex-direction:column;width:100%;gap:45px;padding:72px 18px}
+  .about-collage{display:block;width:100%;height:420px}.about-copy{display:block;width:100%}
+  .gallery-grid.expanded-gallery{display:grid;width:100%;grid-template-columns:1fr;grid-template-rows:none;gap:14px}
+  .expanded-gallery .gallery-item{display:block;width:100%;height:330px}
+  .steps{display:grid;width:100%;grid-template-columns:1fr}.steps article{display:block;width:100%}
+  .cta-section{display:block;width:calc(100% - 24px);margin:0 12px 55px;padding:58px 18px}
+  .footer-main{display:grid;width:100%;grid-template-columns:1fr;gap:38px;padding:55px 22px}
+  .footer-intro,.footer-column,.footer-order{display:block;width:100%}
+  .footer-bottom{display:flex;width:100%;padding:20px 22px}
+  .cart-drawer{width:100%;max-width:100%}
+  .admin-page{width:100%;padding:45px 14px}.admin-grid{display:grid;grid-template-columns:1fr;width:100%}
+  .product-form,.product-list{width:100%;min-width:0}.product-list article{width:100%}
+}

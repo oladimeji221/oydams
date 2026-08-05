@@ -1,4 +1,4 @@
-# Oydam's Confectionaries
+# Oydams Confectionery
 
 A Vue 3 storefront with a WhatsApp checkout, Supabase product management and Cloudinary image uploads.
 

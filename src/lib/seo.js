@@ -1,5 +1,5 @@
 const defaultImage = 'https://res.cloudinary.com/dxvpoebb0/image/upload/v1785884044/oydams/products/cake.jpg'
-const defaultDescription = 'Order freshly made cakes, pastries, Greek yoghurt, parfaits and drinks from Oydam’s Confectionery’s Limited in Ayobo, Lagos.'
+const defaultDescription = 'Order freshly made cakes, pastries, Greek yoghurt, parfaits and drinks from Oydams Confectionery Limited in Ayobo, Lagos.'
 
 function setMeta(selector, attribute, value) {
   let element = document.head.querySelector(selector)
@@ -13,7 +13,7 @@ function setMeta(selector, attribute, value) {
 }
 
 export function updateSeo({ title, description = defaultDescription, image = defaultImage, path = '/' }) {
-  const fullTitle = title ? `${title} | Oydam’s Confectionery` : 'Oydam’s Confectionery | Cakes, Pastries & Yoghurt in Lagos'
+  const fullTitle = title ? `${title} | Oydams Confectionery` : 'Oydams Confectionery | Cakes, Pastries & Yoghurt in Lagos'
   const canonical = `${window.location.origin}${path}`
   document.title = fullTitle
   setMeta('meta[name="description"]', 'content', description)

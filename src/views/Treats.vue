@@ -18,7 +18,7 @@ onMounted(() => { if (!products.value.length) loadProducts() })
 
 <template>
   <main class="treats-page">
-    <section class="catalog-hero"><span class="kicker">The full Oydam’s collection</span><h1>Find your next<br/><em>favourite treat.</em></h1><p>Fresh cakes, pastries, yoghurt, parfaits and drinks, made in Lagos and prepared with care.</p></section>
+    <section class="catalog-hero"><span class="kicker">The full Oydams collection</span><h1>Find your next<br/><em>favourite treat.</em></h1><p>Fresh cakes, pastries, yoghurt, parfaits and drinks, made in Lagos and prepared with care.</p></section>
     <section class="catalog-shell">
       <div class="catalog-toolbar"><div class="catalog-title"><SlidersHorizontal :size="18"/><span>Browse collection</span></div><label class="catalog-search"><Search :size="18"/><input v-model="search" placeholder="Search cakes, yoghurt, drinks..." aria-label="Search products"/></label></div>
       <div class="category-tabs catalog-tabs"><button v-for="category in categories" :key="category" :class="{ active: activeCategory === category }" @click="activeCategory = category">{{ category }}</button></div>

@@ -46,7 +46,7 @@ export function checkout() {
     `  Product: ${window.location.origin}/products/${item.id}`,
   ])
   const message = [
-    `Hello Oydam's 👋🏽 I would like to place an order:`, '', ...lines, '',
+    `Hello Oydams 👋🏽 I would like to place an order:`, '', ...lines, '',
     `*Total: ₦${cartTotal.value.toLocaleString()}*`, '',
     `Name: ${customer.name}`, `Phone: ${customer.phone}`, `Delivery location: ${customer.location}`,
     customer.note ? `Note: ${customer.note}` : '', '', 'Please confirm availability and payment details. Thank you!'
