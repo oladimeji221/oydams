@@ -5,4 +5,4 @@ Disallow: /admin
 Disallow: /login
 Disallow: /register
 
-Sitemap: https://oydamsltd.com/sitemap.xml
+Sitemap: https://www.oydamsltd.com/sitemap.xml
