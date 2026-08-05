@@ -5,7 +5,14 @@ import { addToCart, loadProducts, loadingProducts, products, productsError } fro
 
 const activeCategory = ref('All')
 const search = ref('')
-const categories = ['All', 'Cakes', 'Pastries', 'Parfaits', 'Yoghurt', 'Drinks']
+const categories = [
+  { label: 'All', value: 'All' },
+  { label: 'Parfaits', value: 'Parfaits' },
+  { label: 'Yoghurt', value: 'Yoghurt' },
+  { label: 'Tigernut & Drinks', value: 'Drinks' },
+  { label: 'Cakes', value: 'Cakes' },
+  { label: 'Pastries', value: 'Pastries' },
+]
 const visibleProducts = computed(() => products.value.filter(product => {
   const inCategory = activeCategory.value === 'All' || product.category === activeCategory.value
   const term = search.value.trim().toLowerCase()
@@ -21,7 +28,7 @@ onMounted(() => { if (!products.value.length) loadProducts() })
     <section class="catalog-hero"><span class="kicker">The full Oydams collection</span><h1>Find your next<br/><em>favourite treat.</em></h1><p>Fresh cakes, pastries, yoghurt, parfaits and drinks, made in Lagos and prepared with care.</p></section>
     <section class="catalog-shell">
       <div class="catalog-toolbar"><div class="catalog-title"><SlidersHorizontal :size="18"/><span>Browse collection</span></div><label class="catalog-search"><Search :size="18"/><input v-model="search" placeholder="Search cakes, yoghurt, drinks..." aria-label="Search products"/></label></div>
-      <div class="category-tabs catalog-tabs"><button v-for="category in categories" :key="category" :class="{ active: activeCategory === category }" @click="activeCategory = category">{{ category }}</button></div>
+      <div class="category-tabs catalog-tabs"><button v-for="category in categories" :key="category.value" :class="{ active: activeCategory === category.value }" @click="activeCategory = category.value">{{ category.label }}</button></div>
       <div class="catalog-count"><span>{{ visibleProducts.length }} {{ visibleProducts.length === 1 ? 'product' : 'products' }}</span><small>Prices can be confirmed during WhatsApp checkout</small></div>
       <div v-if="loadingProducts" class="catalog-state"><span class="loader"></span><p>Loading the collection...</p></div>
       <div v-else-if="productsError" class="catalog-state"><h3>We could not load the collection</h3><p>{{ productsError }}</p></div>

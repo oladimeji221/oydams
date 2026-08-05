@@ -5,7 +5,14 @@ import { addToCart, products, productsError, loadingProducts, loadProducts } fro
 import { brandImages } from '../data/products'
 
 const activeCategory = ref('All')
-const categories = ['All', 'Cakes', 'Pastries', 'Parfaits', 'Yoghurt', 'Drinks']
+const categories = [
+  { label: 'All', value: 'All' },
+  { label: 'Parfaits', value: 'Parfaits' },
+  { label: 'Yoghurt', value: 'Yoghurt' },
+  { label: 'Tigernut & Drinks', value: 'Drinks' },
+  { label: 'Cakes', value: 'Cakes' },
+  { label: 'Pastries', value: 'Pastries' },
+]
 const filtered = () => (activeCategory.value === 'All' ? products.value : products.value.filter(p => p.category === activeCategory.value)).slice(0, 4)
 const whatsappUrl = `https://wa.me/${(import.meta.env.VITE_WHATSAPP_NUMBER || '2347067720332').replace(/\D/g, '')}`
 const selectedImage = ref(-1)
@@ -48,7 +55,7 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', galleryKey); docum
 
     <section id="shop" class="shop-section section-wrap">
       <div class="section-heading"><div><span class="eyebrow">A taste of happiness</span><h2>Our sweet collection</h2></div><p>Pick a favourite, or a few. Each treat is made fresh and can be personalised for your moment.</p></div>
-      <div class="category-tabs"><button v-for="category in categories" :key="category" :class="{ active: activeCategory === category }" @click="activeCategory = category">{{ category }}</button></div>
+      <div class="category-tabs"><button v-for="category in categories" :key="category.value" :class="{ active: activeCategory === category.value }" @click="activeCategory = category.value">{{ category.label }}</button></div>
       <div class="product-grid">
         <article v-for="product in filtered()" :key="product.id" class="product-card">
           <router-link :to="`/products/${product.id}`" class="product-image"><img :src="product.image_url" :alt="product.name" loading="lazy"/><span>{{ product.available ? product.category : 'Unavailable' }}</span></router-link>

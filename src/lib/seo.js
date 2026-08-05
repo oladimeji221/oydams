@@ -1,5 +1,5 @@
 const defaultImage = 'https://res.cloudinary.com/dxvpoebb0/image/upload/v1785884044/oydams/products/cake.jpg'
-const defaultDescription = 'Order freshly made cakes, pastries, Greek yoghurt, parfaits and drinks from Oydams Confectionery Limited in Ayobo, Lagos.'
+const defaultDescription = 'Order freshly made cakes, pastries, Greek yoghurt, parfaits and drinks from Oydams Confectionery Limited at 10 Yamco Bus Stop, Ayobo, Lagos.'
 
 function setMeta(selector, attribute, value) {
   let element = document.head.querySelector(selector)
