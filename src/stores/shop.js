@@ -16,7 +16,7 @@ export const cartTotal = computed(() => cart.value.reduce((sum, item) => sum + i
 export async function loadProducts() {
   if (!hasSupabase) { productsError.value = 'The product catalogue is being configured. Please check back shortly.'; return }
   loadingProducts.value = true
-  const { data, error } = await supabase.from('products').select('*').eq('active', true).order('created_at', { ascending: false })
+  const { data, error } = await supabase.from('products').select('*').eq('active', true).order('sort_order', { ascending: true }).order('created_at', { ascending: false })
   if (error) productsError.value = 'We could not load the catalogue right now. You can still order directly on WhatsApp.'
   else { products.value = data || []; productsError.value = '' }
   loadingProducts.value = false
