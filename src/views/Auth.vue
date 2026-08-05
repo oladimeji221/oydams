@@ -18,7 +18,7 @@ async function submit() {
   if (registering.value && form.password !== form.confirm) return error.value = 'Passwords do not match.'
   busy.value = true
   if (registering.value) {
-    const { data, error: authError } = await supabase.auth.signUp({ email: form.email, password: form.password, options: { data: { full_name: form.name } } })
+    const { data, error: authError } = await supabase.auth.signUp({ email: form.email, password: form.password, options: { data: { full_name: form.name }, emailRedirectTo: `${window.location.origin}/login` } })
     error.value = authError?.message || ''
     if (!authError) {
       if (data.session) router.push('/admin')
