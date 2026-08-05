@@ -1,5 +1,5 @@
 <script setup>
-import { ShoppingBag, Menu, X, Instagram, Facebook, Music2, MapPin, Phone, Clock3, ArrowUpRight } from 'lucide-vue-next'
+import { ShoppingBag, Menu, X, Instagram, Facebook, Music2, MapPin, MessageCircle, Clock3, ArrowUpRight } from 'lucide-vue-next'
 import { ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { cartCount, cartOpen, toast } from './stores/shop'
@@ -54,9 +54,9 @@ watchEffect(() => {
   <transition name="toast"><div v-if="toast" class="toast">{{ toast }}</div></transition>
   <footer id="contact">
     <div class="footer-main">
-      <div class="footer-intro"><router-link to="/" class="brand footer-brand"><img :src="brandImages.logo" class="official-logo" alt="Oydams Confectionery Limited"/></router-link><p>Celebration cakes, pastries, yoghurt, parfaits and refreshing drinks, made with care in Lagos.</p><div class="social-links" aria-label="Oydams social media"><a href="https://www.instagram.com/oydamslimited/" target="_blank" rel="noopener" aria-label="Instagram"><Instagram :size="18"/></a><a href="https://www.facebook.com/search/top?q=oydams%20confectionery" target="_blank" rel="noopener" aria-label="Facebook"><Facebook :size="18"/></a><a href="https://www.tiktok.com/search?q=oydams%20confectionery" target="_blank" rel="noopener" aria-label="TikTok"><Music2 :size="18"/></a></div></div>
+      <div class="footer-intro"><router-link to="/" class="brand footer-brand"><img :src="brandImages.logo" class="official-logo" alt="Oydams Confectionery Limited"/></router-link><p>Celebration cakes, pastries, yoghurt, parfaits and refreshing drinks, made with care in Lagos.</p><div class="social-links" aria-label="Oydams social media"><a href="https://www.instagram.com/oydamslimited/" target="_blank" rel="noopener" aria-label="Instagram"><Instagram :size="18"/></a><a href="https://www.facebook.com/search/top?q=oydams%20confectionery" target="_blank" rel="noopener" aria-label="Facebook"><Facebook :size="18"/></a><a href="https://www.tiktok.com/@oydams.confection?_r=1&_t=ZS-98cuqwoZMzl" target="_blank" rel="noopener" aria-label="Oydams on TikTok"><Music2 :size="18"/></a></div></div>
       <div class="footer-column"><h3>Explore</h3><router-link to="/treats">Our products</router-link><a href="/#about">About Oydams</a><a href="/#gallery">Our gallery</a><router-link to="/login">Admin sign in</router-link></div>
-      <div class="footer-column"><h3>Visit & contact</h3><p><MapPin/> 10 Yamco Bus Stop, Ayobo, Lagos</p><a :href="whatsappUrl" target="_blank"><Phone/> +234 706 772 0332</a><p><Clock3/> Monday to Sunday · 8:00am–6:00pm</p></div>
+      <div class="footer-column"><h3>Visit & contact</h3><p><MapPin/> 10 Yamco Bus Stop, Ayobo, Lagos</p><a :href="whatsappUrl" target="_blank" aria-label="Chat with Oydams on WhatsApp"><MessageCircle/> +234 706 772 0332</a><p><Clock3/> Monday to Sunday · 8:00am–6:00pm</p></div>
       <div class="footer-order"><span>READY TO ORDER?</span><h3>Let’s make something delicious.</h3><a :href="whatsappUrl" target="_blank">Chat on WhatsApp <ArrowUpRight :size="18"/></a></div>
     </div>
     <div class="footer-bottom"><small>© {{ new Date().getFullYear() }} Oydams Confectionery Limited. RC 7821155.</small><small>Freshly made in Lagos, Nigeria.</small></div>
