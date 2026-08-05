@@ -28,8 +28,8 @@ onMounted(() => { if (!products.value.length) loadProducts() })
       <div v-else-if="!visibleProducts.length" class="catalog-state"><h3>No treats found</h3><p>Try a different category or search phrase.</p></div>
       <div v-else class="product-grid full-catalog-grid">
         <article v-for="product in visibleProducts" :key="product.id" class="product-card">
-          <router-link :to="`/products/${product.id}`" class="product-image"><img :src="product.image_url" :alt="product.name" loading="lazy"/><span>{{ product.category }}</span></router-link>
-          <div class="product-info"><router-link :to="`/products/${product.id}`"><h3>{{ product.name }}</h3></router-link><p>{{ product.description }}</p><div><strong>₦{{ Number(product.price).toLocaleString() }}</strong><button @click="addToCart(product)"><ShoppingBag :size="15"/> Add</button></div></div>
+          <router-link :to="`/products/${product.id}`" class="product-image"><img :src="product.image_url" :alt="product.name" loading="lazy"/><span>{{ product.available ? product.category : 'Unavailable' }}</span></router-link>
+          <div class="product-info"><router-link :to="`/products/${product.id}`"><h3>{{ product.name }}</h3></router-link><p>{{ product.description }}</p><div><strong>₦{{ Number(product.price).toLocaleString() }}</strong><button @click="addToCart(product)" :disabled="!product.available"><ShoppingBag v-if="product.available" :size="15"/> {{ product.available ? 'Add' : 'Unavailable' }}</button></div></div>
         </article>
       </div>
     </section>

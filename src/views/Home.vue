@@ -51,8 +51,8 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', galleryKey); docum
       <div class="category-tabs"><button v-for="category in categories" :key="category" :class="{ active: activeCategory === category }" @click="activeCategory = category">{{ category }}</button></div>
       <div class="product-grid">
         <article v-for="product in filtered()" :key="product.id" class="product-card">
-          <router-link :to="`/products/${product.id}`" class="product-image"><img :src="product.image_url" :alt="product.name" loading="lazy"/><span>{{ product.category }}</span></router-link>
-          <div class="product-info"><router-link :to="`/products/${product.id}`"><h3>{{ product.name }}</h3></router-link><p>{{ product.description }}</p><div><strong>₦{{ Number(product.price).toLocaleString() }}</strong><button @click="addToCart(product)">Add to bag <span>+</span></button></div></div>
+          <router-link :to="`/products/${product.id}`" class="product-image"><img :src="product.image_url" :alt="product.name" loading="lazy"/><span>{{ product.available ? product.category : 'Unavailable' }}</span></router-link>
+          <div class="product-info"><router-link :to="`/products/${product.id}`"><h3>{{ product.name }}</h3></router-link><p>{{ product.description }}</p><div><strong>₦{{ Number(product.price).toLocaleString() }}</strong><button @click="addToCart(product)" :disabled="!product.available">{{ product.available ? 'Add to bag' : 'Unavailable' }} <span v-if="product.available">+</span></button></div></div>
         </article>
       </div>
       <div v-if="loadingProducts" class="catalog-state"><span class="loader"></span><p>Preparing the collection…</p></div>

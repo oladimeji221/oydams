@@ -23,6 +23,11 @@ export async function loadProducts() {
 }
 
 export function addToCart(product) {
+  if (product.available === false) {
+    toast.value = `${product.name} is currently unavailable`
+    setTimeout(() => (toast.value = ''), 2200)
+    return
+  }
   const existing = cart.value.find(item => item.id === product.id)
   if (existing) existing.quantity += 1
   else cart.value.push({ ...product, quantity: 1 })
