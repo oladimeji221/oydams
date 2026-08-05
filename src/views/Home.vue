@@ -44,7 +44,7 @@ onBeforeUnmount(() => { window.removeEventListener('keydown', galleryKey); docum
       </div>
     </section>
 
-    <section class="promise-strip"><span>Handcrafted with care</span><i>✦</i><span>Fresh quality ingredients</span><i>✦</i><span>Perfect for every occasion</span></section>
+    <section class="promise-strip" aria-label="Our promises"><div class="promise-track"><div class="promise-group"><span>Handcrafted with care</span><i>✦</i><span>Fresh quality ingredients</span><i>✦</i><span>Perfect for every occasion</span><i>✦</i></div><div class="promise-group" aria-hidden="true"><span>Handcrafted with care</span><i>✦</i><span>Fresh quality ingredients</span><i>✦</i><span>Perfect for every occasion</span><i>✦</i></div></div></section>
 
     <section id="shop" class="shop-section section-wrap">
       <div class="section-heading"><div><span class="eyebrow">A taste of happiness</span><h2>Our sweet collection</h2></div><p>Pick a favourite, or a few. Each treat is made fresh and can be personalised for your moment.</p></div>
