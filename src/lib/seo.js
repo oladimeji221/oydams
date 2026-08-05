@@ -12,7 +12,7 @@ function setMeta(selector, attribute, value) {
   element.setAttribute(attribute, value)
 }
 
-export function updateSeo({ title, description = defaultDescription, image = defaultImage, path = '/' }) {
+export function updateSeo({ title, description = defaultDescription, image = defaultImage, path = '/', product = null }) {
   const fullTitle = title ? `${title} | Oydams Confectionery` : 'Oydams Confectionery | Cakes, Pastries & Yoghurt in Lagos'
   const canonical = `${window.location.origin}${path}`
   document.title = fullTitle
@@ -27,4 +27,18 @@ export function updateSeo({ title, description = defaultDescription, image = def
   let link = document.head.querySelector('link[rel="canonical"]')
   if (!link) { link = document.createElement('link'); link.rel = 'canonical'; document.head.appendChild(link) }
   link.href = canonical
+  const oldProductSchema = document.getElementById('product-schema')
+  if (oldProductSchema) oldProductSchema.remove()
+  if (product) {
+    const schema = document.createElement('script')
+    schema.id = 'product-schema'
+    schema.type = 'application/ld+json'
+    schema.textContent = JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'Product', name: product.name,
+      description: product.description, image: [product.image_url], sku: String(product.id),
+      brand: { '@type': 'Brand', name: 'Oydams Confectionery' },
+      offers: { '@type': 'Offer', url: canonical, priceCurrency: 'NGN', price: Number(product.price), availability: product.available === false ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock' },
+    })
+    document.head.appendChild(schema)
+  }
 }
