@@ -1,6 +1,6 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { ArrowRight, Heart, MessageCircle, Sparkles, Star } from 'lucide-vue-next'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { ArrowRight, ChevronLeft, ChevronRight, Heart, MessageCircle, Sparkles, Star, X } from 'lucide-vue-next'
 import { addToCart, products, productsError, loadingProducts, loadProducts } from '../stores/shop'
 import { brandImages } from '../data/products'
 
@@ -8,7 +8,23 @@ const activeCategory = ref('All')
 const categories = ['All', 'Cakes', 'Pastries', 'Parfaits', 'Yoghurt', 'Drinks']
 const filtered = () => (activeCategory.value === 'All' ? products.value : products.value.filter(p => p.category === activeCategory.value)).slice(0, 4)
 const whatsappUrl = `https://wa.me/${(import.meta.env.VITE_WHATSAPP_NUMBER || '2347067720332').replace(/\D/g, '')}`
-onMounted(loadProducts)
+const selectedImage = ref(-1)
+const galleryImages = [
+  { src: brandImages.bakerAtWork, alt: 'Oydam preparing a cake in her Lagos kitchen', caption: 'Crafted by hand', position: 'center' },
+  { src: brandImages.parfaitBatch, alt: 'Fresh fruit and Greek yoghurt parfaits', caption: 'Freshly layered parfaits', position: 'center' },
+  { src: brandImages.butterflyCake, alt: 'Pink and gold butterfly birthday cake', caption: 'Custom celebration cakes', position: 'center' },
+  { src: brandImages.weddingCake, alt: 'Tall white wedding cake at a celebration', caption: 'Wedding centrepieces', position: 'center' },
+  { src: brandImages.weddingCakeClassic, alt: 'Classic white tiered wedding cake', caption: 'Elegant details', position: 'center' },
+  { src: brandImages.tigernut, alt: 'Fresh bottles of Oydam’s tigernut drink', caption: 'Freshly bottled drinks', position: 'center' },
+  { src: brandImages.cocktailSingle, alt: 'Oydam’s chilled fruit cocktail', caption: 'Colourful refreshments', position: 'center' },
+  { src: brandImages.yoghurtLineup, alt: 'Bottles of chia seed drinking yoghurt', caption: 'Creamy drinking yoghurt', position: 'center' },
+]
+function openGallery(index) { selectedImage.value = index; document.body.style.overflow = 'hidden' }
+function closeGallery() { selectedImage.value = -1; document.body.style.overflow = '' }
+function moveGallery(direction) { selectedImage.value = (selectedImage.value + direction + galleryImages.length) % galleryImages.length }
+function galleryKey(event) { if (selectedImage.value < 0) return; if (event.key === 'Escape') closeGallery(); if (event.key === 'ArrowRight') moveGallery(1); if (event.key === 'ArrowLeft') moveGallery(-1) }
+onMounted(() => { loadProducts(); window.addEventListener('keydown', galleryKey) })
+onBeforeUnmount(() => { window.removeEventListener('keydown', galleryKey); document.body.style.overflow = '' })
 </script>
 
 <template>
@@ -51,13 +67,10 @@ onMounted(loadProducts)
 
     <section id="gallery" class="gallery-section section-wrap">
       <div class="section-heading"><div><span class="eyebrow">Made at Oydam's</span><h2>From our kitchen</h2></div><p>A glimpse into the care, colour and creativity behind every Oydam’s order.</p></div>
-      <div class="gallery-grid">
-        <figure class="gallery-tall"><img :src="brandImages.bakerAtWork" alt="Oydam preparing cake decoration"/><figcaption>Crafted by hand</figcaption></figure>
-        <figure><img :src="brandImages.parfaitBatch" alt="Fresh fruit and Greek yoghurt parfaits"/><figcaption>Freshly layered parfaits</figcaption></figure>
-        <figure><img :src="brandImages.butterflyCake" alt="Pink butterfly celebration cake"/><figcaption>Custom celebration cakes</figcaption></figure>
-        <figure class="gallery-wide"><img :src="brandImages.tigernut" alt="Bottles of fresh Oydam's tigernut drink"/><figcaption>Freshly bottled drinks</figcaption></figure>
-      </div>
+      <div class="gallery-grid expanded-gallery"><button v-for="(photo, index) in galleryImages" :key="photo.src" class="gallery-item" @click="openGallery(index)" :aria-label="`Open ${photo.caption}`"><img :src="photo.src" :alt="photo.alt" :style="{ objectPosition: photo.position }" loading="lazy"/><span class="gallery-expand">View</span><span class="gallery-caption">{{ photo.caption }}</span></button></div>
     </section>
+
+    <teleport to="body"><transition name="fade"><div v-if="selectedImage >= 0" class="lightbox" role="dialog" aria-modal="true" :aria-label="galleryImages[selectedImage].caption" @click.self="closeGallery"><button class="lightbox-close" @click="closeGallery" aria-label="Close gallery"><X/></button><button class="lightbox-nav previous" @click="moveGallery(-1)" aria-label="Previous image"><ChevronLeft/></button><figure><img :src="galleryImages[selectedImage].src" :alt="galleryImages[selectedImage].alt"/><figcaption><span>{{ String(selectedImage + 1).padStart(2, '0') }} / {{ String(galleryImages.length).padStart(2, '0') }}</span>{{ galleryImages[selectedImage].caption }}</figcaption></figure><button class="lightbox-nav next" @click="moveGallery(1)" aria-label="Next image"><ChevronRight/></button></div></transition></teleport>
 
     <section class="how-section section-wrap"><span class="eyebrow">Simple & sweet</span><h2>How to order</h2><div class="steps"><article><b>01</b><h3>Choose your treats</h3><p>Browse the collection and add your favourites to your bag.</p></article><article><b>02</b><h3>Share your details</h3><p>Add your name, phone number, location and any special requests.</p></article><article><b>03</b><h3>Confirm on WhatsApp</h3><p>Send your order, confirm delivery and complete payment directly with Oydam.</p></article></div></section>
 

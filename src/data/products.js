@@ -14,8 +14,12 @@ import chiaYoghurt from '../../images/be2b0b72-f074-403a-86fb-7e4f8ad0104a.JPG?u
 import butterflyCake from '../../images/ab5ba714-1ea9-4812-b628-6e353bf4535d.JPG?url'
 import parfaitBatch from '../../images/c3e9127a-58b4-4bcc-9088-cb4a1de008cf.JPG?url'
 import bakerAtWork from '../../images/e6f53765-b777-4893-878a-8fea585be095.JPG?url'
+import weddingCakeClassic from '../../images/wedding_cake.JPG?url'
+import cocktailSingle from '../../images/cocktail.JPG?url'
+import oydamPortraitAlt from '../../images/ceo_1.JPG?url'
+import yoghurtLineup from '../../images/ef147bb7-0502-4c95-bf68-9a57671d45ad.JPG?url'
 
-export const brandImages = { logo, weddingCake, oydamPortrait, oydamAtWork, parfaitBatch, bakerAtWork, butterflyCake, tigernut }
+export const brandImages = { logo, weddingCake, weddingCakeClassic, oydamPortrait, oydamPortraitAlt, oydamAtWork, parfaitBatch, bakerAtWork, butterflyCake, tigernut, cocktailSingle, yoghurtLineup }
 
 // These prices are starter values and can be changed from the admin dashboard.
 export const starterProducts = [
